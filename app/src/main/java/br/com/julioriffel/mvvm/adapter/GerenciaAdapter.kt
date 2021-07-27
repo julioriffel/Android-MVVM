@@ -1,16 +1,22 @@
+/*
+ * Copyright (c) 2021.
+ * Julio Cezar Riffel<julioriffel@gmail.com>
+ */
+
 package br.com.julioriffel.mvvm.adapter
 
-import android.graphics.Color
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.julioriffel.mvvm.databinding.ItemGerenciaBinding
 import br.com.julioriffel.mvvm.model.Gerencia
 
+
 class GerenciaAdapter :
-    androidx.recyclerview.widget.ListAdapter<Gerencia, GerenciaAdapter.ViewHolder>(DiffCallback()) {
+    ListAdapter<Gerencia, GerenciaAdapter.ViewHolder>(GerenciaDiffCallback()) {
     var listenerClick: (Gerencia) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,11 +33,14 @@ class GerenciaAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Gerencia) {
             binding.tvNome.text = item.nome
+            binding.tvEmail.text = item.id.toString()
         }
+
     }
 }
 
-class DiffCallback : DiffUtil.ItemCallback<Gerencia>() {
+
+class GerenciaDiffCallback : DiffUtil.ItemCallback<Gerencia>() {
     override fun areItemsTheSame(oldItem: Gerencia, newItem: Gerencia) = oldItem == newItem
     override fun areContentsTheSame(oldItem: Gerencia, newItem: Gerencia) =
         oldItem.id == newItem.id

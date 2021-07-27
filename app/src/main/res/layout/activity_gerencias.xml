@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2021.
   ~ Julio Cezar Riffel<julioriffel@gmail.com>
   -->
@@ -9,8 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".view.MainActivity">
+    tools:context=".view.GerenciasActivity">
 
 
     <TextView
@@ -18,19 +16,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="MVVM"
+        android:text="@string/gerencias"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/bt_gerencias"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cards"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/gerencias"
-        app:layout_constraintTop_toBottomOf="@id/tv_titulo" />
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo"
+        tools:itemCount="8"
+        tools:listitem="@layout/item_gerencia" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
