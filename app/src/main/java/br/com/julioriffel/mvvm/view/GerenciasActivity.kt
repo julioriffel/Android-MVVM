@@ -25,15 +25,24 @@ class GerenciasActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         gerenciaViewModel = ViewModelProvider(this).get(GerenciaViewModel::class.java)
-
+        gerenciaViewModel.init(this)
         binding.rvCards.adapter = adapter
 
         getAll()
     }
 
     private fun getAll() {
+//
+//        gerenciaViewModel.moviesList.observe(this, { list ->
+//            if (list.isNotEmpty()) {
+//                adapter.submitList(list)
+//            }
+//        })
+
         gerenciaViewModel.getAll(this)!!.observe(this, Observer {
             adapter.submitList(it)
-        })
+        })//
+//
+
     }
 }
