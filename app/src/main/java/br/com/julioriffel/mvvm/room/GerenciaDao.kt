@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2021.
+ * Julio Cezar Riffel<julioriffel@gmail.com>
+ */
+
 package br.com.julioriffel.mvvm.room
 
 import androidx.lifecycle.LiveData
@@ -14,4 +19,7 @@ interface GerenciaDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(gerencia: Gerencia)
+
+    @Query(value = "DELETE FROM Gerencia")
+    fun deleteAll()
 }

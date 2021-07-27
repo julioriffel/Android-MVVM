@@ -46,6 +46,15 @@ class GerenciaRepository(private val movieRestApiTask: MovieRestApiTask) {
             return loginTableModel
         }
 
+        fun deleteAll(context: Context) {
+            appDatabase = initializeDB(context)
+            CoroutineScope(IO).launch {
+                appDatabase!!.gerenciaDao().deleteAll()
+            }
+
+
+        }
+
 
     }
 
@@ -55,6 +64,7 @@ class GerenciaRepository(private val movieRestApiTask: MovieRestApiTask) {
 
         if (request.isSuccessful) {
             request.body()?.let {
+                deleteAll(context)
                 it.forEach {
                     insert(context, it)
                 }
